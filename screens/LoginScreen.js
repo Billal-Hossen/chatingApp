@@ -74,3 +74,4 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
+// https://gruopchat.atlassian.net/jira/software/projects/GROUP/boards/1
