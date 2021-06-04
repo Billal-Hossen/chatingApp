@@ -11,6 +11,7 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      console.log(authUser);
       if (authUser) {
         navigation.replace("Home");
       }
@@ -18,7 +19,11 @@ const LoginScreen = ({ navigation }) => {
 
     return unsubscribe;
   }, []);
-  const signIn = () => {};
+  const signIn = () => {
+    auth
+    .signInWithEmailAndPassword(email,password)
+    .catch((error)=>alert(error));
+  };
   return (
     <KeyboardAvoidingView behavior="Padding" style={styles.container}>
       <StatusBar style="light" />
@@ -42,6 +47,7 @@ const LoginScreen = ({ navigation }) => {
           type="email"
           value={password}
           onChangeText={(text) => setPassword(text)}
+          onSubmitEditing={signIn}
         />
       </View>
       <Button title="Login" onPress={signIn} containerStyle={styles.button} />
