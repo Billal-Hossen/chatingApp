@@ -15,7 +15,6 @@ const HomeScreen = ({ navigation }) => {
     });
   };
   useLayoutEffect(() => {
-    console.log(auth.currentUser);
     const unsubscribe = db.collection("chats").onSnapshot((snapshot) => {
       setChats(
         snapshot.docs.map((doc) => ({
@@ -30,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "GroupChat",
-      headerStyle: { backgroundColor: "#fff" },
+      headerStyle: { backgroundColor: "lightblue" },
       headerTitleStyle: { color: "black" },
       headerLeft: () => (
         <View style={{ marginLeft: 20 }}>

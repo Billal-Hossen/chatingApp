@@ -11,7 +11,6 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      console.log(authUser);
       if (authUser) {
         navigation.replace("Home");
       }
@@ -21,8 +20,8 @@ const LoginScreen = ({ navigation }) => {
   }, []);
   const signIn = () => {
     auth
-    .signInWithEmailAndPassword(email,password)
-    .catch((error)=>alert(error));
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error));
   };
   return (
     <KeyboardAvoidingView behavior="Padding" style={styles.container}>
@@ -67,6 +66,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   inputContainer: {
     width: 300,
+    padding: "5px",
   },
   container: {
     flex: 1,

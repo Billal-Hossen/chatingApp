@@ -8,9 +8,10 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
   useEffect(() => {
     const unsubscribe = db
       .collection("chats")
+
       .doc(id)
-      .collection("messages")
-      .orderBy("timestamp", "doc")
+      .collection("message")
+      .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) =>
         setChatMessages(snapshot.docs.map((doc) => doc.data()))
       );
@@ -28,7 +29,7 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
         source={{
           uri:
             chatMessages?.[0]?.photoUrl ||
-            "https://files.fm/thumb_show.php?i=3g382ekcn",
+            "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
         }}
       />
       <ListItem.Content>
@@ -46,15 +47,3 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
 export default CustomListItem;
 
 const styles = StyleSheet.create({});
-// import React from "react";
-// import { View, Text } from "react-native";
-
-// const CustomListItem = () => {
-//   return (
-//     <View>
-//       <Text> this is me</Text>
-//     </View>
-//   );
-// };
-
-// export default CustomListItem;
