@@ -14,6 +14,15 @@ const HomeScreen = ({navigation}) => {
       navigation.replace("login");
     });
   };
+  useLayoutEffect(()=>{
+const unsubscribe=db.collection("chats").onSnapshot(snapshot=>{
+ setChats(snapshot.docs.map(doc=>({
+    id:doc.id,
+    data:doc.data()
+ })))
+})
+return unsubscribe;
+  },[])
   
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -43,13 +52,27 @@ const HomeScreen = ({navigation}) => {
         </View>
       )
     })
-  }, [navigation])
+  }, [navigation]);
+
+  const enterChat=(id,chatName)=>{
+    navigation.navigate("Chat",{
+      id,
+      chatName,
+    })
+  }
 
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        <CustomListItems></CustomListItems>
+      <ScrollView style={styles.container}>
+        {
+          chats.map(({id,data:{chatName}})=>{
+            <CustomListItems
+             key={id} id={id} 
+              chatName={chatName} enterChat={enterChat}  ></CustomListItems>
+          })
+        }
+      
       </ScrollView>
       
     </SafeAreaView>
@@ -57,4 +80,8 @@ const HomeScreen = ({navigation}) => {
 };
 
 export default HomeScreen;
-const styles=StyleSheet.create({})
+const styles=StyleSheet.create({
+  container:{
+    height:"100%"
+  }
+})
