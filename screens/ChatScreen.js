@@ -97,23 +97,17 @@ const ChatScreen = ({ navigation, route }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <>
             <ScrollView contentContainerStyle={{ padding: 15 }}>
-              {messages.map(({ id, data }) => {
+              {messages.map(({ id, data }) =>
                 data.email === auth.currentUser.email ? (
                   <View kry={id} style={styles.receiver}>
                     <Avatar
-                      //WEB
-                      // containerStyle={{
-                      // position="absolute",
-                      // bottom=-15,
-                      // right=-5
-                      // }}
                       position="absolute"
                       bottom={-15}
                       right={-5}
                       rounded
                       size={30}
                       source={{
-                        uri: data.photoURL,
+                        uri: data.photoUrl,
                       }}
                     />
                     <Text style={styles.receiverText}>{data.message}</Text>
@@ -133,20 +127,20 @@ const ChatScreen = ({ navigation, route }) => {
                       rounded
                       size={30}
                       source={{
-                        uri: data.photoURL,
+                        uri: data.photoUrl,
                       }}
                     />
                     <Text style={styles.sendText}>{data.message}</Text>
                   </View>
-                );
-              })}
+                )
+              )}
             </ScrollView>
             <View style={styles.footer}>
               <TextInput
                 onSubmitEditing={sendMessage}
                 value={input}
                 onChangeText={(text) => setInput(text)}
-                placeholder="Single Message"
+                placeholder="GroupChat Message"
                 style={styles.textInput}
               />
               <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>

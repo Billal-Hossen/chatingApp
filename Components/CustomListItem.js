@@ -6,7 +6,6 @@ import { db } from "../firebase";
 const CustomListItem = ({ id, chatName, enterChat }) => {
   const [chatMessages, setChatMessages] = useState([]);
   useEffect(() => {
-    console.log(chatName, id);
     const unsubscribe = db
       .collection("chats")
       .doc(id)

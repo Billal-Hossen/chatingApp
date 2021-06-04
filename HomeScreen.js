@@ -10,7 +10,8 @@ const HomeScreen = ({ navigation }) => {
 
   const signOutUser = () => {
     auth.signOut().then(() => {
-      navigation.replace("login");
+      navigation.replace("Login");
+      console.log("signout");
     });
   };
   useLayoutEffect(() => {
@@ -28,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "signal",
+      title: "GroupChat",
       headerStyle: { backgroundColor: "#fff" },
       headerTitleStyle: { color: "black" },
       headerLeft: () => (
